@@ -1,10 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+	<title>小马得吧得吧</title>
 </head>
 <body>
-<p>hello xuejia</p>
+<h1 style="text-align: center;width: 100%">测试测试</h1>
+<div class="show" style="background-color: #ee5f5b;width: 100px;text-align: center;border-radius:7px;height: 30px;line-height: 30px;color: #fff ">点击切换</div>
+<div>
+	<img class="show1" style="width: 100%;display: none" src="ime/img.jpg" alt="">
+</div>
+<script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+<script type="text/javascript">
+	$('.show').click(function(){
+        $(".show1").toggle();
+    });
+</script>
 </body>
 </html>
