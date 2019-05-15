@@ -4,12 +4,33 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
 	<title>小马得吧得吧</title>
+	<style type="">
+		.animation {
+			animation:  mymove  .8s  ease-in-out infinite alternate both;
+			position: absolute;
+			margin: auto;
+			left: 25%;
+			top: 30%;
+		}
+		@keyframes mymove {
+			from {
+				width: 60%;
+				left: 20%;
+				top: 25%;
+			}
+			to {
+				width: 50%;
+				left: 25%;
+				top: 30%;
+			}
+		}
+	</style>
 </head>
 <body>
-<h1 style="text-align: center;width: 100%">测试测试</h1>
-<div class="show" style="background-color: #ee5f5b;width: 100px;text-align: center;border-radius:7px;height: 30px;line-height: 30px;color: #fff ">点击切换</div>
+<h1 style="text-align: center;width: 100%">小相册</h1>
+<div class="show" style="background-color: #ee5f5b;width: 100px;text-align: center;border-radius:7px;height: 30px;line-height: 30px;color: #fff;margin: auto; ">点击切换</div>
 <div>
-	<img class="show1" style="width: 100%;display: none" src="img/img.jpg" alt="">
+	<img class="show1 animation" style="width: 50%;display: none;" src="img/img.jpg" alt=""><!---->
 </div>
 <script src="js/jq.js"></script>
 <script type="text/javascript">
