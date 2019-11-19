@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,minimum-scale=1.0, maximum-scale=1.0, user-scalable=no,viewport-fit=cover">
+    <title></title>
+    <style type="text/css">
+        li{
+            list-style: none;
+        }
+        .rctable td {
+            padding: 8px 15px;
+            font-size: 21px;
+            border: solid 1px #e8e8e8;
+            line-height: 20px;
+        }
+        .btn{
+            cursor:pointer
+        }
+        .id ,.name{
+            border: 0;
+            outline: none;
+            background-color: rgba(0, 0, 0, 0);
+        }
+    </style>
+</head>
+<div class="" style="display: block">
+    <table border="0" cellspacing="0" cellpadding="0" class="rctable">
+        <tbody>
+        <tr>
+            <td align="center"><strong>会员</strong></td>
+            <td align="center"><strong>姓名</strong></td>
+            <td align="center"><strong>积分</strong></td>
+            <td align="center"><strong>电话</strong></td>
+            <td align="center"><strong>身份证</strong></td>
+            <td align="center"><strong>查看详情</strong></td>
+        </tr>
+        <tr>
+            <td align="center">金会员</td>
+            <td ><input class="name" type="text" value="张三"></td>
+            <td>1200</td>
+            <td>18734166666</td>
+            <td ><input class="id" type="text"  value="140321199412081510"></td>
+            <td class="btn">点击查看</td>
+        </tr>
+        <tr>
+            <td align="center">普通会员</td>
+            <td ><input class="name" type="text" value="李四"></td>
+            <td>1530</td>
+            <td>18734166666</td>
+            <td ><input class="id" type="text"  value="140321199410081510"></td>
+            <td class="btn">点击查看</td>
+        </tr>
+        <tr>
+            <td align="center">会员</td>
+            <td ><input class="name" type="text" value="王五"></td>
+            <td>1150</td>
+            <td>18734166666</td>
+            <td ><input class="id" type="text"  value="140321199411081510"></td>
+            <td class="btn">点击查看</td>
+        </tr>
+        <tr>
+            <td align="center">测试</td>
+            <td ><input class="name" type="text"></td>
+            <td>1200</td>
+            <td>18734167666</td>
+            <td ><input class="id" type="text"  value=""></td>
+            <td class="btn">点击查看</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<body>
+<script src="http://jsjscm.oss-cn-beijing.aliyuncs.com/js/jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="http://jsjscm.oss-cn-beijing.aliyuncs.com/js/layer/layer.js"></script>
+<script>
+    var lunar = {
+     /*   tg: '甲乙丙丁戊己庚辛壬癸',
+          dz: '子丑寅卯辰巳午未申酉戌亥',
+         year: '鼠牛虎兔龙蛇马羊猴鸡狗猪',*/
+        number: '一二三四五六七八九十',
+        month: '正二三四五六七八九十冬腊',
+        monthadd: [0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334],
+        calendar: [0xA4B, 0x5164B, 0x6A5, 0x6D4, 0x415B5, 0x2B6, 0x957, 0x2092F, 0x497, 0x60C96, 0xD4A, 0xEA5, 0x50DA9, 0x5AD, 0x2B6, 0x3126E, 0x92E, 0x7192D, 0xC95, 0xD4A, 0x61B4A, 0xB55, 0x56A, 0x4155B, 0x25D, 0x92D, 0x2192B, 0xA95, 0x71695, 0x6CA, 0xB55, 0x50AB5, 0x4DA, 0xA5B, 0x30A57, 0x52B, 0x8152A, 0xE95, 0x6AA, 0x615AA, 0xAB5, 0x4B6, 0x414AE, 0xA57, 0x526, 0x31D26, 0xD95, 0x70B55, 0x56A, 0x96D, 0x5095D, 0x4AD, 0xA4D, 0x41A4D, 0xD25, 0x81AA5, 0xB54, 0xB6A, 0x612DA, 0x95B, 0x49B, 0x41497, 0xA4B, 0xA164B, 0x6A5, 0x6D4, 0x615B4, 0xAB6, 0x957, 0x5092F, 0x497, 0x64B, 0x30D4A, 0xEA5, 0x80D65, 0x5AC, 0xAB6, 0x5126D, 0x92E, 0xC96, 0x41A95, 0xD4A, 0xDA5, 0x20B55, 0x56A, 0x7155B, 0x25D, 0x92D, 0x5192B, 0xA95, 0xB4A, 0x416AA, 0xAD5, 0x90AB5, 0x4BA, 0xA5B, 0x60A57, 0x52B, 0xA93, 0x40E95]
+    }
+    function getLunarDate(date) {
+        var year, month, day;
+        if (!date) {
+            date = new Date(), year = date.getFullYear(), month = date.getMonth(), day = date.getDate();
+        } else {
+           date = date.split('-'), year = parseInt(date[0]), month = date[1] - 1, day = parseInt(date[2]);
+        }
+        if (year < 1921 || year > 2020) {
+            return {}
+        }
+        var total, m, n, k, bit, lunarYear, lunarMonth, lunarDay;
+        var isEnd = false;
+        var tmp = year;
+        if (tmp < 1900) {
+            tmp += 1900;
+        }
+        total = (tmp - 1921) * 365 + Math.floor((tmp - 1921) / 4) + lunar.monthadd[month] + day - 38;
+        if (year % 4 == 0 && month > 1) {
+            total++;
+        }
+        for (m = 0;; m++) {
+            k = (lunar.calendar[m] < 0xfff) ? 11 : 12;
+            for (n = k; n >= 0; n--) {
+                bit = (lunar.calendar[m] >> n) & 1;
+                if (total <= 29 + bit) {
+                    isEnd = true;
+                    break;
+                }
+                total = total - 29 - bit;
+            }
+            if (isEnd) break;
+        }
+        lunarYear = 1921 + m;
+        lunarMonth = k - n + 1;
+        lunarDay = total;
+        if (k == 12) {
+            if (lunarMonth == Math.floor(lunar.calendar[m] / 0x10000) + 1) {
+                lunarMonth = 1 - lunarMonth;
+            }
+            if (lunarMonth > Math.floor(lunar.calendar[m] / 0x10000) + 1) {
+                lunarMonth--;
+            }
+        }
+        return {
+            lunarYear: lunarYear,
+            lunarMonth: lunarMonth,
+            lunarDay: lunarDay,
+        };
+    }
+    function getLunarDateString(lunarDate) {
+        if (!lunarDate.lunarDay) return;
+        var data = {},
+            lunarYear = lunarDate.lunarYear,
+            lunarMonth = lunarDate.lunarMonth,
+            lunarDay = lunarDate.lunarDay;
+      /*  data.tg = lunar.tg.charAt((lunarYear - 4) % 10);
+          data.dz = lunar.dz.charAt((lunarYear - 4) % 12);
+          data.year = lunar.year.charAt((lunarYear - 4) % 12);*/
+        data.month = lunarMonth < 1 ? '(闰)' + lunar.month.charAt(-lunarMonth - 1) : lunar.month.charAt(lunarMonth - 1);
+        data.day = (lunarDay < 11) ? "初" : ((lunarDay < 20) ? "十" : ((lunarDay < 30) ? "廿" : "三十"));
+        if (lunarDay % 10 != 0 || lunarDay == 10) {
+            data.day += lunar.number.charAt((lunarDay - 1) % 10);
+        }
+        return data;
+    }
+    $(".btn").click(function () {
+        var a =  $(this).prev().find(".id").val()
+        var b =  $($(this).parents()[0]).find(".name").val()
+        if( a != ''){
+            var newnian = a.slice(6, 10)
+            var newyue = a.slice(10, 12)
+            var newri = a.slice(12, 14)
+            var newState = newnian + "-" + newyue + "-" + newri
+            var yue = getLunarDateString(getLunarDate(newState)).month
+            var tian = getLunarDateString(getLunarDate(newState)).day
+          /*  var name = $(".name").html()*/
+            layer.alert( b +"的农历生日是" + yue + "月" + tian)
+        }else {
+            layer.alert("请填写身份证消息")
+        }
+    })
+</script>
+</body>
+
+</html>
