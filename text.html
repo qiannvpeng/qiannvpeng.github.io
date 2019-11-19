@@ -72,8 +72,8 @@
     </table>
 </div>
 <body>
-<script src="http://jsjscm.oss-cn-beijing.aliyuncs.com/js/jquery-3.1.1.min.js"></script>
-<script type="text/javascript" src="http://jsjscm.oss-cn-beijing.aliyuncs.com/js/layer/layer.js"></script>
+<script src="./js/jquery-3.1.1.min.js"></script>
+
 <script>
     var lunar = {
      /*   tg: '甲乙丙丁戊己庚辛壬癸',
@@ -159,10 +159,9 @@
             var newState = newnian + "-" + newyue + "-" + newri
             var yue = getLunarDateString(getLunarDate(newState)).month
             var tian = getLunarDateString(getLunarDate(newState)).day
-          /*  var name = $(".name").html()*/
-            layer.alert( b +"的农历生日是" + yue + "月" + tian)
+            alert( b +"的农历生日是" + yue + "月" + tian)
         }else {
-            layer.alert("请填写身份证消息")
+            alert("请填写身份证消息")
         }
     })
 </script>
