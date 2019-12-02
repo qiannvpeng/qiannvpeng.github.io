@@ -191,7 +191,7 @@
         </div>
     </div>
     <div class="togBtn"></div>
-    <!--<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>-->
+  <!--  <script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>-->
     <script src="./js/jquery-3.1.1.min.js"></script>
     <script src="./js/jcarousellite_1.0.1c4.js"></script>
     <script type="text/javascript">
@@ -249,7 +249,7 @@
                     //定时器执行轮播
                     setInterval(function () {
                         that.indexPosition()
-                    },100)
+                    },200)
                     var tlen=this.len;
                     this.rediusStyle(tlen);
                 },
@@ -275,12 +275,15 @@
                         top:-that.index*that.boxWidth
                     },100,function () {
                         //根据len的长度判断是否已经轮播到最后一张  如果到最后一张  那么复原从新开始轮播
-                        if(that.index==that.len){
+
+                        console.log(that.index);
+                        if(that.index >= that.len){
                             that.ul.css({
                                 top:0
                             },100)
                             that.index=0;
                         }
+
                     })
                 }
             }
