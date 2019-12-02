@@ -70,19 +70,22 @@
         html,body{
             background-color: #fff;
             height: 100%;
+            width: 100%;
+            margin: 0;
+            padding: 0;
 
         }
-        .wrapper{
+      /*  .wrapper{
             width:400px;
             height:400px;
-        }
+        }*/
          .box{
-             width: 268px;
-             height: 268px;
+             width: 386px;
+             height: 386px;
              position: absolute;
              top: 50%;
-             margin-top: -134px;
-             margin-left: -134px;
+             margin-top: -193px;
+             margin-left: -193px;
              left: 50%;
 
         }
@@ -98,34 +101,37 @@
             left: 50%;
             margin-top: -15px;
             margin-left: -50px;
-
         }
-
         .wrapper #button img{
             position: absolute;
             top:-23px;
             width:130px;
         }
-
-
         .mywrapper{
              width: 100%;
              height: 100%;
+            background: #610301;
+            background: url("./img/background.png");
+            background-repeat: no-repeat;
+            background-size: 100%;
+            min-width: 1600px;
          }
         .mywrapper .mywrapper_img{
-            width: 1200px;
-            height: 680px;
+            width: 800px;
+            height: 800px;
             display: block;
             margin: auto;
             position: absolute;
             top: 50%;
-            margin-top: -340px;
+            margin-top: -400px;
             left: 50%;
-            margin-left: -600px;
+            margin-left: -400px;
+            box-shadow: 0px 0px 500px 0px #D85500;
+            border-radius: 50%;
         }
         .mywrapper .box .box_che{
-            width: 45px;
-            height: 70px;
+            width: 60px;
+            height: 90px;
             position: absolute;
             top: 0%;
             left: 0%;
@@ -152,7 +158,7 @@
         .demo1_wrap{
             width: 200px;
             height: 75px;
-            position: relative;
+            position: absolute;
             top: 50%;
             left: 50%;
             margin-top: -38px;
@@ -166,7 +172,7 @@
 </head>
 <body>
     <div class="mywrapper wrapper">
-        <img class="mywrapper_img" src="./img/741ee72bc81ebd77544685a315aacc4.jpg" alt="">
+        <img class="mywrapper_img" src="./img/zhong.png" alt="">
         <div class="box" id="box">
             <img class="box_che" src="./img/34c6ff1a0af729e0dc3f546560b32da.png" alt="">
         </div>
@@ -243,7 +249,7 @@
                     //定时器执行轮播
                     setInterval(function () {
                         that.indexPosition()
-                    },300)
+                    },100)
                     var tlen=this.len;
                     this.rediusStyle(tlen);
                 },
@@ -267,12 +273,12 @@
                     // 因为是向右边滚动到  所以是负数
                     that.ul.animate({
                         top:-that.index*that.boxWidth
-                    },150,function () {
+                    },100,function () {
                         //根据len的长度判断是否已经轮播到最后一张  如果到最后一张  那么复原从新开始轮播
                         if(that.index==that.len){
                             that.ul.css({
                                 top:0
-                            },150)
+                            },100)
                             that.index=0;
                         }
                     })
@@ -289,7 +295,7 @@
             if(e.keyCode==32){
                 if( flag==1 ){
                     flag = 0;
-                    $(rallback).css("animation","music_disc 1s linear infinite")
+                    $(rallback).css("animation","music_disc 0.3s linear infinite")
                     rallback.style.webkitAnimationPlayState = "running";  //旋转动画暂停
                 }else{
                     flag = 1;
