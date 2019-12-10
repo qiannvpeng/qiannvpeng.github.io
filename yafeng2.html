@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>小车</title>
+    <style type="text/css">
+        .newbox{
+            width: 200px;
+            height: 75px;
+            position: relative;
+            overflow: hidden;
+        }
+        .box_ul{
+            position: absolute;
+            height: 100%;
+            left:0;
+        }
+        .box_ul li{
+            height: 100%;
+            width: 200px;
+            box-sizing: border-box;
+        }
+        .togBtn{
+            width: 500px;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            border: 1px solid #f00;
+            margin: 50px auto;
+            display: none;
+        }
+        .ulReadius{
+            position: absolute;
+            z-index: 333;
+            width: 40%;
+            left:30%;
+            bottom: 20px;
+            height: 20px;
+        }
+        .ulReadius li{
+            width: 15px;
+            float: left;
+            height: 15px;
+            border-radius: 7px;
+            background: rgba(0,0,0,0);
+            margin: 5px 10px;
+        }
+        @-webkit-keyframes music_disc {
+            0% {
+                -webkit-transform: rotate(0deg);
+                -ms-transform: rotate(0deg);
+                -o-transform: rotate(0deg);
+                transform: rotate(0deg);
+            }
+            100% {
+                -webkit-transform: rotate(360deg);
+                -ms-transform: rotate(360deg);
+                -o-transform: rotate(360deg);
+                transform: rotate(360deg);
+            }
+        }
+        *{
+            margin:0;
+            padding:0;
+            list-style: none;
+            text-decoration: none;
+        }
+        html,body{
+            background-color: #fff;
+            height: 100%;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+
+        }
+      /*  .wrapper{
+            width:400px;
+            height:400px;
+        }*/
+         .box{
+             width: 386px;
+             height: 386px;
+             position: absolute;
+             top: 50%;
+             margin-top: -193px;
+             margin-left: -193px;
+             left: 50%;
+
+        }
+        .wrapper .box img{
+            width: 100%;
+        }
+        .wrapper #button1{
+            width: 100px;
+            height: 30px;
+            position: absolute;
+            border-radius: 50%;
+            top: 60%;
+            left: 50%;
+            margin-top: -15px;
+            margin-left: -50px;
+        }
+        .wrapper #button img{
+            position: absolute;
+            top:-23px;
+            width:130px;
+        }
+        .mywrapper{
+             width: 100%;
+             height: 100%;
+            background: #610301;
+            background: url("./img/background.png");
+            background-repeat: no-repeat;
+            background-size: 100%;
+            min-width: 1600px;
+         }
+        .mywrapper .mywrapper_img{
+            width: 800px;
+            height: 800px;
+            display: block;
+            margin: auto;
+            position: absolute;
+            top: 50%;
+            margin-top: -400px;
+            left: 50%;
+            margin-left: -400px;
+            box-shadow: 0px 0px 500px 0px #D85500;
+            border-radius: 50%;
+        }
+        .mywrapper .box .box_che{
+            width: 60px;
+            height: 90px;
+            position: absolute;
+            top: 0%;
+            left: 0%;
+            margin-top: 0;
+            margin-left: 0;
+            transform:rotate(42deg);
+        }
+
+        .demo1 ul{
+            margin: 0px;
+            padding: 0px;
+            position: relative;
+            list-style-type: none;
+            z-index: 1;
+            height: 900px;
+            top: -200px;
+        }
+        .demo1 ul li{
+            overflow: hidden;
+            float: none;
+            width: 100%;
+            height: 98px;
+        }
+        .demo1_wrap{
+            width: 200px;
+            height: 75px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-top: -38px;
+            margin-left: -100px;
+            z-index: 1111111;
+        }
+        .box_ul li img{
+            width: 100% !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="mywrapper wrapper">
+        <img class="mywrapper_img" src="./img/zhong2.png" alt="">
+        <div class="box" id="box">
+            <img class="box_che" src="./img/34c6ff1a0af729e0dc3f546560b32da.png" alt="">
+        </div>
+        <div class="demo1_wrap">
+            <div class="newbox">
+                <ul class="box_ul">
+                    <li><img src="./img/png1.png" alt=""></li>
+                    <li><img src="./img/png2.png" alt=""></li>
+                    <li><img src="./img/png3.png" alt=""></li>
+                    <li><img src="./img/png4.png" alt=""></li>
+                    <li><img src="./img/png5.png" alt=""></li>
+                    <li><img src="./img/png6.png" alt=""></li>
+                </ul>
+                <ul class="ulReadius"></ul>
+            </div>
+        </div>
+    </div>
+    <div class="togBtn"></div>
+   <!-- <script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>-->
+    <script src="./js/jquery-3.1.1.min.js"></script>
+    <script src="./js/jcarousellite_1.0.1c4.js"></script>
+    <script type="text/javascript">
+
+            var page={
+                //li内容的长度
+                len:null,
+                //当前运动到到位置   下标
+                index:0,
+                //最外面到盒子
+                box:$('.box'),
+                //盒子里面到ul
+                ul:$('.box_ul'),
+                //获取一下每一次移动的距离
+                boxWidth:null,
+                //是否执行动画
+                isint:true,
+                //暂停或者启动按钮
+                togBtn:$('.togBtn'),
+                //圆点定位
+                ulReadius:$('.ulReadius'),
+                //执行函数
+                init:function () {
+                    //初始化加载
+                    this.start();
+                    //点击按钮操作是否执行轮播
+                    this.clicktogBtn();
+                },
+                clicktogBtn:function(){
+                    var that=this;
+                    this.togBtn.click(function () {
+                        that.isint=!that.isint;
+                    })
+                },
+                //初始化执行
+                start:function(){
+                    this.len=this.ul.children('li').length;
+                    var liHtml=this.ul.children('li:nth-child(1)').get(0).outerHTML;
+                    this.ul.append(liHtml)
+                    //获取box的宽度   li的宽度和box的宽度一致
+                    //var boxwidth=this.box.width();
+                    //获取ul的宽度   根据li的总长度来获取
+                    // var ulwidth=boxwidth*(this.len+1);
+                    var boxwidth=this.box.height()
+                    var ulwidth=boxwidth*(this.len+1);
+                    //给ul和li添加上宽度
+                    /*   this.ul.css({ width:ulwidth+'px'  })
+                       this.ul.children('li').css({  width:boxwidth+'px'   })*/
+                    this.ul.css({ height:ulwidth+'px'  })
+                    this.ul.children('li').css({  height:boxwidth+'px'   })
+                    //每一次移动的距离
+                    this.boxWidth=boxwidth;
+
+                    var that=this;
+                    //定时器执行轮播
+                    setInterval(function () {
+                        that.indexPosition()
+                    },100)
+                    var tlen=this.len;
+                    this.rediusStyle(tlen);
+                },
+                //小圆点的样式
+                rediusStyle:function(len){
+                    var liHtml=[];
+                    for(var i=0;i<len;i++){
+                        liHtml.push('<li></li>')
+                    }
+                    this.ulReadius.append(liHtml.join(""));
+                },
+                indexPosition:function () {
+                    //判断是否启用轮播动画
+                    if(this.isint){
+                        return true;
+                    }
+                    //指针指向全局page对象
+                    var that=this;
+                    //每执行一次轮播一个图片   下标+1
+                    that.index++;
+                    // 因为是向右边滚动到  所以是负数
+                    that.ul.animate({
+                        top:-that.index*that.boxWidth
+                    },100,function () {
+                        //根据len的长度判断是否已经轮播到最后一张  如果到最后一张  那么复原从新开始轮播
+
+                        console.log(that.index);
+                        if(that.index >= that.len){
+                            that.ul.css({
+                                top:0
+                            },100)
+                            that.index=0;
+                        }
+
+                    })
+                }
+            }
+            page.init();
+
+    </script>
+    <script type="text/javascript">
+        var flag = 1;
+        var rallback = document.getElementById('box');
+        $(document).keydown(function(e){
+            var e = e || window.event;
+            if(e.keyCode==32){
+                if( flag==1 ){
+                    flag = 0;
+                    $(rallback).css("animation","music_disc 0.3s linear infinite")
+                    rallback.style.webkitAnimationPlayState = "running";  //旋转动画暂停
+                }else{
+                    flag = 1;
+                    rallback.style.webkitAnimationPlayState = "paused";  //旋转动画暂停
+                }
+            }
+            if(e.keyCode==13){
+                $(".togBtn").click()
+            }
+        })
+
+    </script>
+</body>
+</html>
